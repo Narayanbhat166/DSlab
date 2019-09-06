@@ -136,16 +136,16 @@ NODE DeleteRear(NODE F) {
 		free(F);
 		return NULL;
 	}
-	NODE PN=NULL, LN=F;
+	NODE LN=F;
 
-	while(LN->link != NULL) {
-		PN = LN;
-		LN = LN->link;
-	}
+	while(LN->link->link != NULL) 
+		LN = LN -> link;
 
-	printf("\nDeleted %d\n",LN->info);
-	PN->link = NULL;
-	free(LN);
+	printf("\nDeleted %d\n",F->info);
+	free(LN->link);
+
+	LN->link = NULL;
+
 	Display(F);
 	return F;
 
