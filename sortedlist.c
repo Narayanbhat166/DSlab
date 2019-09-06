@@ -27,7 +27,7 @@ int main () {
 		switch(choice) {
 			case 1:First = InsertByOrder(First);Display(First);
 				   break;
-			case 2:First = DeleteByKey(First);
+			case 2:First = DeleteByKey(First);Display(First);
 				   break;
 			case 3:Display(First);
 				   break;
@@ -82,7 +82,7 @@ void Display(NODE F) {
 	if(F==NULL) {
 		printf("\nList is empty\n");
 		return;
-	}
+	}-
 
 	printf("\n");
 	while(F!=NULL) {
@@ -90,4 +90,48 @@ void Display(NODE F) {
 		F = F->link;
 	}
 	printf("\n");
+}
+
+NODE DeleteByKey(NODE F) {
+	if (F == NULL) {
+		printf("\nThe list is empty, Returning to main\n");
+		return F;
+	}
+
+	printf("\nEnter the item to be removed\n");
+	scanf("%d",&item);
+
+	if(F->info == item) {
+		printf("\nDeleted %d at position %d\n",item,pos);
+		F = F->link;
+		return F;
+	}
+
+	NODE CN,PN = NULL;
+	CN = F;
+
+	int pos = 1,item;
+
+	
+
+	while(CN != NULL && CN->info != item) {
+		PN = CN;
+		CN = CN->link;
+		pos++;
+	}
+
+	if(CN == NULL) {
+		printf("The element does not exist\n");
+		return F;
+	}
+
+	else
+
+		printf("\nDeleted %d at position %d\n",item,pos);
+
+		PN->link = CN->link;
+		free(CN);
+
+		return F;
+
 }
