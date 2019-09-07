@@ -115,7 +115,7 @@ node DeleteRear(node F) {
 	while(LN->link->link != NULL) 
 		LN = LN -> link;
 
-	printf("\nDeleted %d\n",F->info);
+	printf("\nDeleted %d\n",F->link->info);
 	free(LN->link);
 
 	LN->link = NULL;
