@@ -6,17 +6,17 @@ struct node {
 	struct node *link;  //Address of the next node
 };
 
-typedef struct node *NODE;
+typedef struct node *node;
 
-NODE createNode();
-NODE InsertFront(NODE);
-NODE InsertRear(NODE);
-void Display(NODE);
-NODE DeleteFront(NODE F);
-NODE DeleteRear(NODE F);
+node createnode();
+node InsertFront(node);
+node InsertRear(node);
+void Display(node);
+node DeleteFront(node F);
+node DeleteRear(node F);
 
 int main () {
-	NODE First = NULL;
+	node First = NULL;
 	int choice;
 	
 
@@ -44,18 +44,18 @@ int main () {
 
 }
 
-NODE createNode() {
-	NODE NN = NULL;
-	NN = (NODE) malloc(sizeof(struct node));
+node createnode() {
+	node NN = NULL;
+	NN = (node) malloc(sizeof(struct node));
 	if (NN!=NULL)
 		printf("\nNew node is created at address %u",NN);
 	return NN;
 }
 
-NODE InsertFront(NODE F) {
-	NODE NN = NULL;
+node InsertFront(node F) {
+	node NN = NULL;
 
-	NN = createNode();
+	NN = createnode();
 	NN->link=NULL;
 
 	printf("\nEnter the details to be inserted\n");
@@ -71,7 +71,7 @@ NODE InsertFront(NODE F) {
 	return F;
 }
 
-void Display(NODE F) {
+void Display(node F) {
 
 	if(F==NULL) {
 		printf("\nList is empty\n");
@@ -86,12 +86,12 @@ void Display(NODE F) {
 	printf("\n");
 }
 
-NODE InsertRear(NODE F) {
-	NODE NN,LN;
+node InsertRear(node F) {
+	node NN,LN;
 
 	LN=F;
 
-	NN = createNode();
+	NN = createnode();
 	NN->link = NULL;
 
 	printf("\nEnter the details to be inserted\n");
@@ -109,7 +109,7 @@ NODE InsertRear(NODE F) {
 	return F;
 }
 
-NODE DeleteFront(NODE F) {
+node DeleteFront(node F) {
 	if(F==NULL) {
 		printf("List is empty\n");
 		return F;
@@ -117,14 +117,14 @@ NODE DeleteFront(NODE F) {
 
 	printf("\nDeleted %d\n",F->info);
 
-	NODE NN=F;
+	node NN=F;
 	F=F->link;
 	free(NN);
 	Display(F);
 	return F;
 }
 
-NODE DeleteRear(NODE F) {
+node DeleteRear(node F) {
 	
 	if(F == NULL) {
 		printf("\nList is empty\n");
@@ -136,12 +136,13 @@ NODE DeleteRear(NODE F) {
 		free(F);
 		return NULL;
 	}
-	NODE LN=F;
+
+	node LN=F;
 
 	while(LN->link->link != NULL) 
 		LN = LN -> link;
 
-	printf("\nDeleted %d\n",F->info);
+	printf("\nDeleted %d\n",LN->link->info);
 	free(LN->link);
 
 	LN->link = NULL;
