@@ -29,8 +29,8 @@ void main() {
 				   break;
 			case 6:First = InsertByPos(First);
 				   break;
-			// case 7:First = DeleteByPos(First);
-			// 	   break;
+		        case 7:First = DeleteByPos(First);Display(First);
+			 	   break;
 			default:exit(0);
 		}
 	}
@@ -73,7 +73,7 @@ node InsertByPos(node F) {
 		count++;
 	}
 
-	if(CN == NULL) {
+	if(count != pos) {
 		printf("\nInvalid position, returning to main\n");
 		return F;
 	}
@@ -86,3 +86,51 @@ node InsertByPos(node F) {
 	return F;
 }
 
+
+node DeleteByPos(node F) {
+	if (F == NULL) {
+		printf("\nThe list is empty\n");
+		return F;
+	}
+
+	int pos;
+	printf("\nEnter the position To be deleted:\n");
+	scanf("%d",&pos);
+
+	if(F->link == NULL && pos != 1 || pos == 0) {
+		printf("\nInvalid position\n");
+		return F;
+	}
+
+	
+	if(pos == 1) {
+		printf("\nDeleted %d at position %d\n",F->info,pos);
+		node T = F;
+		free(T);
+		return F->link;
+	}
+
+	if (pos > 1) {
+		node CN = F,PN = NULL;
+		int count=1;
+		while(CN != NULL && count != pos ) {
+			PN = CN;
+			CN = CN -> link;
+			count ++;
+		}
+
+		if(CN == NULL) {
+			printf("\nInvalid position\n");
+			return F;
+		}
+	
+
+		PN -> link = CN -> link;
+		printf("\nDeleted %d at position %d\n",CN->info,count);
+		free(CN);
+		return F;
+		}
+}
+		
+			
+	
