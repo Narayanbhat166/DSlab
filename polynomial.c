@@ -55,9 +55,15 @@ void main()
 	createPoly(poly1);
 	Display(poly1);
 
+	printf("\nEvaluating polynomial 1\n");
+	Evaluate(poly1);
+
 	printf("\nCreating polynomial 2");
 	createPoly(poly2);
 	Display(poly2);
+	
+	printf("\nEvaluating polynomial 2\n");
+	Evaluate(poly2);
 	
 	poly3 = Add(poly1,poly2);
 	Display(poly1);
@@ -138,7 +144,6 @@ void Evaluate(Head H)
 
 Head Add(Head H1,Head H2)
 {
-	printf("In add");
 	Head result;
 	result = (Head) malloc(sizeof(struct Head));
 	result->info =0;
@@ -183,7 +188,6 @@ Head Add(Head H1,Head H2)
 		temp1 = temp1->link;
 	}
 
-	printf("First loop ran");
 
 	//to add those terms which are not used
 
@@ -207,8 +211,6 @@ Head Add(Head H1,Head H2)
 		temp1 = temp1->link;
 	}
 
-	printf("Second loop also ran man");
-
 	temp2 = H2->link;
 	while(temp2!=NULL)
 	{
@@ -228,7 +230,6 @@ Head Add(Head H1,Head H2)
 		}
 		temp2= temp2->link;
 	}
-	printf("leaving add");
 	return result;
 
 
