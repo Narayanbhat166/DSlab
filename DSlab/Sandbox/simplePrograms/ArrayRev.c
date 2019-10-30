@@ -1,0 +1,64 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void Read(int * ,int);
+void Display(int * ,int );
+void Reverse(int * ,int);
+
+void main()
+{
+	int *a, n;
+	printf("Enter the number of elements of the array\n");
+	scanf("%d",&n);
+	
+	a = (int *)malloc(n * sizeof(int));
+
+	Read(a, n);
+	Display(a, n);
+	Reverse(a, n);
+	Display(a, n);
+}
+void Read(int *x ,int n)
+{
+	int *a=x;
+	while(x < (a + n))
+	{
+		scanf("%d", x++);
+	}
+}
+
+void Display(int *x,int n)
+{
+	int i;
+	for(i=0;i<n;i++)
+	printf(" %d",*(x+i));
+	printf("\n");
+}	
+void Reverse(int *x ,int n)
+{
+	int *p = x + n -1,temp;
+	while(x<p)
+	{
+		temp = *x;
+		*x = *p;
+		*p = temp;
+		x++,p--;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
